@@ -1,0 +1,52 @@
+<div>
+    <h3>User info</h3>
+    <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image.jpg" %>
+    <table>
+        <tbody>
+            <tr></tr>
+            <tr>
+                <th>name</th>
+                <th><%= @user.name %></th>
+            </tr>
+            <tr>
+                <th>introduction</th>
+                <th></th>
+            </tr>
+        </tbody>
+    </table>
+</div>
+ <% if @user.id == current_user.id %>
+    <p><%= link_to "編集", edit_user_path(@user) %></p>
+ <% end %>
+
+<h3>New Book</h3>
+<%= form_with model: @book, local:true do |f| %>
+    <p>Title</p>
+    <%= f.text_field :title %>
+    <p>Opinion</p>
+    <%= f.text_area :opinion %>
+    <%= f.submit 'Create Book' %>
+    
+<% end %>
+
+<h2>Books</h2>
+<% @books.each do |book| %>
+<table>
+    <thead>
+        <tr></tr>
+        <tr>Title</tr>
+        <tr>Opinion</tr>
+        <tr></tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><%= attachment_image_tag @user, :image, :fill, 60, 60, format: 'jpeg', fallback: "no_image.jpg" %></td>
+            <%= link_to book_path(post_image.id) do %>
+                <td><%= book.title %></td>
+            <% end %>
+            <td><%= book.body %></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+<% end %>

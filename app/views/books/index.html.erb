@@ -1,0 +1,46 @@
+<div>
+    <h3>User info</h3>
+    <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image.jpg" %>
+    <table>
+        <tbody>
+            <tr></tr>
+            <tr>
+                <th>name</th>
+                <th><%= @user.name %></th>
+            </tr>
+            <tr>
+                <th>introduction</th>
+                <th></th>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h3>New Book</h3>
+<%= form_with model: @book, local:true do |f| %>
+    <p>Title</p>
+    <%= f.text_field :title %>
+    <p>Opinion</p>
+    <%= f.text_area :opinion, maxlength:  %>
+    
+    <%= f.submit 'Create Book' %>
+<% end %>
+
+<table>
+    <thead>
+        <tr></tr>
+        <tr>Title</tr>
+        <tr>Opinion</tr>
+        <tr></tr>
+    </thead>
+    <tbody>
+        <% @books.each do |book| %>
+         <tr>
+            <td><%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image.jpg" %></td>
+            <td><%= book.title %></td>
+            <td><%= book.opinion %></td>
+            <td></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
