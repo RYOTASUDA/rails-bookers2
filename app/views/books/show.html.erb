@@ -15,12 +15,17 @@
         </tbody>
     </table>
 </div>
+
+<% if @user.id == current_user.id %>
+    <p><%= link_to "編集", edit_user_path(@user) %></p>
+<% end %>
+
 <h3>New Book</h3>
 <%= form_with model: @book, local:true do |f| %>
     <p>Title</p>
     <%= f.text_field :title %>
     <p>Opinion</p>
-    <%= f.text_area :opinion %>
+    <%= f.text_area :body %>
     <%= f.submit 'Create Book' %>
 <% end %>
 <table>
@@ -28,15 +33,21 @@
     <tbody>
         <tr>
             <td>
-                <a><%= attachment_image_tag image.user, :image, :fill, 60, 60, fallback: "no_image.jpg" %>
-                <br><%= @book.user.name %></br>
-                </a>
+                <%= link_to user_path(@user.id) do %>
+                    <%= attachment_image_tag(@book.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg") %>
+                <% end %>
+                <br>
+                    <%= link_to user_path(@user.id) do %>
+                        <%= @book.user.name %>
+                    <% end %>   
+                </br>
+                
             </td>
-            <td><%= book.title %></td>
-            <td><%= book.body %></td>
+            <td><%= @book.title %></td>
+            <td><%= @book.body %></td>
             <td></td>
-            <td><%= link_to "Delete", book_path(@book), method: :delete %></td>
             <td><%= link_to "Edit", book_path(@book) %></td>
+            <td><%= link_to "Delete", book_path(@book), method: :delete %></td>
         </tr>
     </tbody>
 </table>
