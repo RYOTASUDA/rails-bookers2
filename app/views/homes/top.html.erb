@@ -1,13 +1,17 @@
-<h1>welcome to Bookers !!</h1>
-<p>In Bookers,
+<h1>welcome to
+<i class="fas fa-book"><strong>Bookers</strong></i> !!</h1>
+<p>In 
+<i class="fas fa-book"><strong>Bookers</strong></i>,
 
 <br>you can share and exchange your opinions , inpressions , and emotions</br>
 
 about various books!</p>
 
-<li>
-    <%= link_to "sign up", new_user_registration_path %>
-</li>
-<li>
-    <%= link_to "log in", new_user_session_path %>
-</li>
+<div class="row">
+    <a><%= link_to "Log in", new_user_session_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in"  %></a>
+</div>
+<div class="row">
+    <a><%= link_to "Sign up", new_user_registration_path, class: "btn btn-success btn-sm btn-block sign_up" %></a>
+</div>
+
+

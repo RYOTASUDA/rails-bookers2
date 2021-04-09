@@ -1,0 +1,30 @@
+<h3>User info</h3>
+<%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image.jpg" %>
+<table class="table">
+    <tbody>
+        <tr></tr>
+        <tr>
+            <td><strong>name</strong></td>
+            
+            <td><strong><%= @user.name %></strong></td>
+        </tr>
+        <tr>
+            <td><strong>introduction</strong></td>
+            
+            <td><strong><%= @user.introduction %></strong></th>
+        </tr>
+    </tbody>
+</table>
+<% if @user.id == current_user.id %>
+    <a><%= link_to "", edit_user_path(@user), class: "btn btn-outline-secondary btn-block fas fa-user-cog" %></a>
+<% end %>
+
+<h3>New Book</h3>
+<%= form_with model: @book, local:true do |f| %>
+    <p>Title</p>
+    <%= f.text_field :title %>
+    <p>Opinion</p>
+    <%= f.text_area :body %>
+    <%= f.submit 'Create Book', class: "btn btn-success" %>
+    
+<% end %>

@@ -1,53 +1,35 @@
-<div>
-    <h3>User info</h3>
-    <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image.jpg" %>
-    <table>
-        <tbody>
-            <tr></tr>
-            <tr>
-                <th>name</th>
-                <th><%= @user.name %></th>
-            </tr>
-            <tr>
-                <th>introduction</th>
-                <th></th>
-            </tr>
-        </tbody>
-    </table>
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
+<% end %>
+
+<div class="row">
+    <div class="col-md-3">
+        <%= render 'books/list', books: @books, users: @users %>
+    </div>
+    
+    <div class="col-md-8 offset-md-1">
+        <h1>Book detail</h1>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td>
+                        <%= link_to user_path(@user.id) do %>
+                            <%= attachment_image_tag(@book.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", size: '40x40') %>
+                        <% end %>
+                        <br>
+                            <%= link_to user_path(@user.id) do %>
+                                <%= @book.user.name %>
+                            <% end %>   
+                        </br>
+                        
+                    </td>
+                    <td><%= @book.title %></td>
+                    <td><%= @book.body %></td>
+                    <td></td>
+                    <td><%= link_to "Edit", book_path(@book) %></td>
+                    <td><%= link_to "Delete", book_path(@book), method: :delete %></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
-
-<% if @user.id == current_user.id %>
-    <p><%= link_to "編集", edit_user_path(@user) %></p>
-<% end %>
-
-<h3>New Book</h3>
-<%= form_with model: @book, local:true do |f| %>
-    <p>Title</p>
-    <%= f.text_field :title %>
-    <p>Opinion</p>
-    <%= f.text_area :body %>
-    <%= f.submit 'Create Book' %>
-<% end %>
-<table>
-    <h1>Book detail</h1>
-    <tbody>
-        <tr>
-            <td>
-                <%= link_to user_path(@user.id) do %>
-                    <%= attachment_image_tag(@book.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg") %>
-                <% end %>
-                <br>
-                    <%= link_to user_path(@user.id) do %>
-                        <%= @book.user.name %>
-                    <% end %>   
-                </br>
-                
-            </td>
-            <td><%= @book.title %></td>
-            <td><%= @book.body %></td>
-            <td></td>
-            <td><%= link_to "Edit", book_path(@book) %></td>
-            <td><%= link_to "Delete", book_path(@book), method: :delete %></td>
-        </tr>
-    </tbody>
-</table>
