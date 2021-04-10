@@ -1,3 +1,11 @@
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
+<% end %>
+
+<% if flash[:alert] %>
+  <p><%= flash[:alert] %></p>
+<% end %>
+
 <div class="row">
     <div class="col-md-3">
         <%= render 'books/list', books: @books, users: @users %>
