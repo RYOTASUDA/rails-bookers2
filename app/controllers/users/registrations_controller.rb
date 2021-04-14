@@ -63,7 +63,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def new
     if @user.save
       flash[:notice] = 'Welcome! You have signed up successfully.'
-      redirect_to root_path
+      redirect_to user_path(@user.id)
     else
       render :new
     end

@@ -5,9 +5,12 @@ class ApplicationController < ActionController::Base
         user_path(current_user.id)
     end
     
-    protected
+    
+    
+    private
     
     def configure_permitted_parameters
-        devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+        devise_parameter_sanitizer.permit(:sign_up, keys: [:email])
     end
+   
 end

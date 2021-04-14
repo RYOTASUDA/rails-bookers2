@@ -27,16 +27,17 @@ class Users::SessionsController < Devise::SessionsController
   
   def new
     if @user.save
-      redirect_to root_path
-      flash[:alert] = 'Signed in successfully.'
+      redirect_to user_path(user.id)
+      flash[:notice] = 'Signed in successfully.'
     else
       render :new
     end
   end
+
   
   def destroy
     @user.destroy
     redirect_to destroy_user_session_path
-    flash[:destroy] = 'Signed out successfully.'
+    flash[:notice] = 'Signed out successfully.'
   end
 end
