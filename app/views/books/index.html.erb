@@ -29,6 +29,14 @@
                       <% end %>
                     </td>
                     <td><%= book.body %></td>
+                    <td>
+                      <%= link_to book_favorites_path(book), method: :delete do %>
+                          ♥<%= book.favorites.count, class: "fas fa-heart" %>
+                      <% end %>
+                    </td>
+                    <td>
+                      コメント数：<%= @book.book_comments.count %>
+                    </td>
                   </tr>
               <% end %>
         </tbody>
