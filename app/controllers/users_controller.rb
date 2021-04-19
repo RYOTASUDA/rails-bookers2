@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @books = @user.books
     @book = Book.new
+    @favorite = Favorite.find_by(user_id: current_user.id, book_id: params[:id]) if user_signed_in?
   end
   
   def index

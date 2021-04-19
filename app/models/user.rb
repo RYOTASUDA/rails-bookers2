@@ -10,6 +10,10 @@ class User < ApplicationRecord
   
   attachment :profile_image
   
+  def liked_by?(book_id)
+    favoritees.where(book_id: book_id).exists?
+  end
+  
   validates :name, length: { in: 2..20 }, uniqueness: true
   validates :introduction, length: { maximum: 50 }
 end

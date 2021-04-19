@@ -30,6 +30,7 @@ class BooksController < ApplicationController
         @book = Book.find(params[:id])
         @user = @book.user
         @book_comment = BookComment.new
+        @favorite = Favorite.find_by(user_id: current_user.id, book_id: params[:id]) if user_signed_in?
     end
     
     def destroy
